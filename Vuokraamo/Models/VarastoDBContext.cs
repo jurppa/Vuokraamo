@@ -52,7 +52,7 @@ namespace Vuokraamo.Models
 
             modelBuilder.Entity<Customer>(entity =>
             {
-                entity.HasNoKey();
+               // entity.HasNoKey();
 
                 entity.ToTable("Customer");
 

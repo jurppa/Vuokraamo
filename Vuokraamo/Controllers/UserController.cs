@@ -28,11 +28,11 @@ namespace Vuokraamo.Controllers
         }
 
         [HttpPost]
-        public IActionResult Rekisteröidy(Customer a)    // Signup ja asiakkuuden hallinta
+        public IActionResult Rekisteröidy(Customer Create)    // Signup ja asiakkuuden hallinta
         {
             VarastoDBContext db = _context;
             var q = db.Customers;
-            q.Add(a);
+            db.Customers.Add(Create);
             db.SaveChanges();
 
 
