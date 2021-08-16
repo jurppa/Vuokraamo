@@ -28,10 +28,12 @@ namespace Vuokraamo.Controllers
             return View();
         }
         
-        public IActionResult ProductList()
+        public IActionResult ProductList(int number = 0)
         {
             VarastoDBContext db = _context;
-            List<Product> products = db.Products.ToList();
+            ViewBag.number = number;
+            int showAmount = 5;
+            List<Product> products = db.Products.Skip(number * showAmount).Take(showAmount).ToList();
             return View(products);
         }
 
