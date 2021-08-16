@@ -3,11 +3,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Vuokraamo.Models;
 
 namespace Vuokraamo.Controllers
 {
     public class LoginController : Controller
     {
+        private readonly VarastoDBContext _context;
+
+        public LoginController(VarastoDBContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
             return View();

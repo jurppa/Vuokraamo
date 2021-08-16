@@ -27,10 +27,12 @@ namespace Vuokraamo.Controllers
             ViewBag.Data = testi.Name;
             return View();
         }
-
-        public IActionResult Privacy()
-        {   
-            return View();
+        
+        public IActionResult ProductList()
+        {
+            VarastoDBContext db = _context;
+            List<Product> products = db.Products.ToList();
+            return View(products);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
