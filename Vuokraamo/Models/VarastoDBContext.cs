@@ -35,7 +35,7 @@ namespace Vuokraamo.Models
 
             modelBuilder.Entity<Admin>(entity =>
             {
-                entity.HasNoKey();
+                // entity.HasNoKey();
 
                 entity.ToTable("Admin");
 
@@ -77,7 +77,7 @@ namespace Vuokraamo.Models
 
             modelBuilder.Entity<Product>(entity =>
             {
-                entity.HasNoKey();
+                //entity.HasNoKey();
 
                 entity.ToTable("Product");
 
