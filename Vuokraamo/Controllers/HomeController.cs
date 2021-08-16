@@ -29,7 +29,7 @@ namespace Vuokraamo.Controllers
         }
 
         public IActionResult Privacy()
-        {
+        {   
             return View();
         }
 
