@@ -21,10 +21,22 @@ namespace Vuokraamo.Controllers
             _context = context;
         }
 
+        [HttpGet]
+        public IActionResult Rekisteröidy()
+        {
+            return View();
+        }
 
-        public IActionResult Index()    // Signup ja asiakkuuden hallinta
+        [HttpPost]
+        public IActionResult Rekisteröidy(Customer a)    // Signup ja asiakkuuden hallinta
         {
             VarastoDBContext db = _context;
+            var q = db.Customers;
+            q.Add(a);
+            db.SaveChanges();
+
+
+
 
 
             return View();
