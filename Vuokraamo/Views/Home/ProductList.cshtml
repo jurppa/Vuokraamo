@@ -1,9 +1,13 @@
 ﻿@model List<Product>
-@foreach (var product in Model)
-{
-<div>
-    @product.Name
+<div class="row">
 
+    @foreach (var product in Model)
+    {
+        <div class="col-4">
+            <h3>@product.Name</h3> Hinta: @product.Price €
+            <img class="img-fluid" src="~/images/default-product-image.png" />
 
-</div>
+        </div>
+
 }
+</div>
