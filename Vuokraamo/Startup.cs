@@ -28,7 +28,14 @@ namespace Vuokraamo
             services.AddControllersWithViews();
             services.AddDbContext<VarastoDBContext>(options =>
              options.UseSqlServer(Configuration.GetConnectionString("VarastoDB")));
-           
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,9 +55,9 @@ namespace Vuokraamo
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            
             app.UseAuthorization();
-
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

@@ -12,5 +12,18 @@ namespace Vuokraamo.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult AdminLogin()
+        {
+            return View();
+        }
+    
+        [HttpPost]
+        public void AdminLogin(string email, string password)
+        {
+            Console.WriteLine(email);
+            Console.WriteLine(password);
+
+        }
     }
 }
