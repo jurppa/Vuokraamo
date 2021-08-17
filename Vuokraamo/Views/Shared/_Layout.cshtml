@@ -7,6 +7,8 @@
 }
 
 @{string isUser = HttpContextAccessor.HttpContext.Session.GetString("ckey");}
+@{string isAdmin = HttpContextAccessor.HttpContext.Session.GetString("key");}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,20 +35,28 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ProductList">Tuotteet</a>
                         </li>
-                        
+
                         <li>
                             @{if (isUser == "customer")
                                 {
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="LogOut">Log out</a>
 
-                                   <a> @HttpContextAccessor.HttpContext.Session.GetString("cname")</a>
+                                    <a> @HttpContextAccessor.HttpContext.Session.GetString("cname")</a>
 
                                 }
-                                else
-                                {
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="UserLogin">Kirjaudu sisään</a>
+                                else if (isAdmin == "admin")
+                                    {
 
-                                }
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="LogOut">Log out</a>
+
+                                    <a>  @HttpContextAccessor.HttpContext.Session.GetString("key")</a>
+
+                                    }
+                            else
+                            {
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="UserLogin">Kirjaudu sisään</a>
+
+                            }
                             }
                         </li>
                     </ul>
