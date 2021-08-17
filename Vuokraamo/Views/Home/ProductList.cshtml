@@ -8,10 +8,11 @@
         <div class="col-4">
             <h3 style="text-align: center">@product.Name</h3> Hinta: @product.Price €
             <img class="img-fluid" src="~/images/default-product-image.png" />
-
+            
         </div>
 
     }
 </div>
+
 @Html.ActionLink("Edellinen", "ProductList", new { number = id - 1 })
 @Html.ActionLink("Seuraava", "ProductList", new { number = id + 1 })
