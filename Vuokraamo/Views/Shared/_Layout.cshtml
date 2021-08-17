@@ -39,7 +39,7 @@
                                 {
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="LogOut">Log out</a>
 
-                                    @HttpContextAccessor.HttpContext.Session.GetString("cname")
+                                   <a> @HttpContextAccessor.HttpContext.Session.GetString("cname")</a>
 
                                 }
                                 else
