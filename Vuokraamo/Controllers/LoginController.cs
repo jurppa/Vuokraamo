@@ -77,6 +77,7 @@ namespace Vuokraamo.Controllers
                 
                 HttpContext.Session.SetString("ckey", "customer");
                 HttpContext.Session.SetString("cname", customer.Name);
+                HttpContext.Session.SetInt32("cid", customer.CustomerId);
                 Console.WriteLine("kirjautuminen onnistui");
                 return RedirectToAction("Index","Home");
             }

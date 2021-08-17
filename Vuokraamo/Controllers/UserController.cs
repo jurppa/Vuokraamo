@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -45,10 +46,9 @@ namespace Vuokraamo.Controllers
         [HttpGet]
         public IActionResult AsiakasTiedot(int id)
         {
-
-                VarastoDBContext db = _context;
-          
-            return View(db.Customers.Where(a => a.CustomerId == id).FirstOrDefault());
+            VarastoDBContext db = _context;
+            int cstId = (int)HttpContext.Session.GetInt32("cid");
+            return View(db.Customers.Where(a => a.CustomerId == cstId).FirstOrDefault());
             }
     }
 }

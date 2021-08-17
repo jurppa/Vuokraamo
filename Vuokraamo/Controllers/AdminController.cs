@@ -24,7 +24,7 @@ namespace Vuokraamo.Controllers
             var files = HttpContext.Request.Form.Files;
             var upload = @"~\wwwroot\images";
 
-
+            var fileName = product.ImageUrl;
             return View("Index");
         }
     }
