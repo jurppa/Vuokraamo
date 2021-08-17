@@ -12,13 +12,13 @@ namespace Vuokraamo.Controllers
     public class UserController : Controller 
     {
   
-        private readonly ILogger<UserController> _logger;
+        private readonly ILogger<UserController> _logger;       
         private readonly VarastoDBContext _context;
 
         public UserController(ILogger<UserController> logger, VarastoDBContext context)
         {
             _logger = logger;
-            _context = context;
+            _context = context;                                                                 // Connection stringin piilotuksesta tulleita.
         }
 
         [HttpGet]
@@ -28,7 +28,7 @@ namespace Vuokraamo.Controllers
         }
 
         [HttpPost]
-        public IActionResult Rekisteröidy(Customer Create)    // Signup ja asiakkuuden hallinta
+        public IActionResult Rekisteröidy(Customer Create)    // Tässä Controllerissa voidaan luoda uusi käyttäjä. 
         {
             VarastoDBContext db = _context;
             var q = db.Customers;
@@ -40,6 +40,15 @@ namespace Vuokraamo.Controllers
 
 
             return View();
-        }
+      
+       }
+        [HttpGet]
+        public IActionResult AsiakasTiedot(int id)
+        {
+
+                VarastoDBContext db = _context;
+          
+            return View(db.Customers.Where(a => a.CustomerId == id).FirstOrDefault());
+            }
     }
 }
