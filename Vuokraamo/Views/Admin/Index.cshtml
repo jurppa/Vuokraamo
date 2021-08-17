@@ -5,4 +5,9 @@
 
 @{string isAdmin = HttpContextAccessor.HttpContext.Session.GetString("key");}
 @{ if (isAdmin == "admin")
-    { <h2>Tervetuloa ylläpitäjän näkymään</h2> } } 
+    { <h2>Tervetuloa ylläpitäjän näkymään</h2>
+
+        <p>Lisää tuote</p>
+        @Html.ActionLink("Lisää tuote", "AddProduct")
+
+    } } 
