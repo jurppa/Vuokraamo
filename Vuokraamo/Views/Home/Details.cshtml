@@ -3,6 +3,18 @@
 <h1>@Model.Name</h1>
 @Model.Price €
 <br />
+@if (@Model.Amount <= 0)
+{
+    <br />
+    <font color="red">
+        <p color="red"><em>Kaikki tuotteet ovat tällä hetkellä vuokralla.</em></p>
+    </font>
+}
+else if (Model.Amount > 0)
+{
+    <br />
+    <p><em>Tuotetta on tällä hetkellä @Model.Amount kpl saatavilla</em></p>
+}
 <img class="img-fluid" src="~/images/@Model.ImageUrl" />
 <br />
 <h4>Esittely</h4>
