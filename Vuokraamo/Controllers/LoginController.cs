@@ -74,6 +74,7 @@ namespace Vuokraamo.Controllers
             }
             if (customer.Password == password)
             {
+                
                 HttpContext.Session.SetString("ckey", "customer");
                 HttpContext.Session.SetString("cname", customer.Name);
                 Console.WriteLine("kirjautuminen onnistui");
@@ -87,6 +88,11 @@ namespace Vuokraamo.Controllers
 
 
             return RedirectToAction("UserLogin");
+        }
+        public IActionResult LogOut()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
