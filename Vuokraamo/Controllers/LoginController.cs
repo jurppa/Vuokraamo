@@ -68,19 +68,20 @@ namespace Vuokraamo.Controllers
         {
             VarastoDBContext db = _context;
             Customer customer = db.Customers.Where(a => a.Email == email).FirstOrDefault();
-            if (customer == null)
+            if (customer != null )
             {
-                RedirectToAction("UserLogin");
-            }
-            if (customer.Password == password)
-            {
-                
+                if (customer.Password == password)
+                {
                 HttpContext.Session.SetString("ckey", "customer");
                 HttpContext.Session.SetString("cname", customer.Name);
                 HttpContext.Session.SetInt32("cid", customer.CustomerId);
                 Console.WriteLine("kirjautuminen onnistui");
                 return RedirectToAction("Index","Home");
-            }
+                }
+            //    ModelState.AddModelError("", "The user name or password provided is incorrect.");
+            //    RedirectToAction("UserLogin");
+           }
+                 
             else
             {
                 Console.WriteLine("kirjautuminen ei onnistunut");
