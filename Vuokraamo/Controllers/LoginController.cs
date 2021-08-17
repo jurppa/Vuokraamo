@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Vuokraamo.Models;
+using Microsoft.AspNetCore.Http;
+
 
 namespace Vuokraamo.Controllers
 {
@@ -27,11 +29,64 @@ namespace Vuokraamo.Controllers
         }
     
         [HttpPost]
-        public void AdminLogin(string email, string password)
+        public IActionResult AdminLogin(string email, string password)
         {
-            Console.WriteLine(email);
-            Console.WriteLine(password);
+            VarastoDBContext db = _context;
+            Admin admin = db.Admins.Where(a => a.Email == email).FirstOrDefault();
+            if(admin == null)
+            {
+                RedirectToAction("AdminLogin");
+            }
+            if(admin.Password == password)
+            {
+                HttpContext.Session.SetString("key", "admin");
 
+                Console.WriteLine("kirjautuminen onnistui");
+                return RedirectToAction("Success");
+            }
+            else
+            {
+                Console.WriteLine("kirjautuminen ei onnistunut");
+                RedirectToAction("AdminLogin");
+            }
+
+
+            return RedirectToAction("AdminLogin");
+        }
+        [HttpGet]
+        public IActionResult Success()
+        {
+            return View();
+        }
+        [HttpGet]
+        public IActionResult UserLogin()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult UserLogin(string email, string password)
+        {
+            VarastoDBContext db = _context;
+            Customer customer = db.Customers.Where(a => a.Email == email).FirstOrDefault();
+            if (customer == null)
+            {
+                RedirectToAction("UserLogin");
+            }
+            if (customer.Password == password)
+            {
+                HttpContext.Session.SetString("ckey", "customer");
+                ViewBag.customerName = customer.Name;
+                Console.WriteLine("kirjautuminen onnistui");
+                return RedirectToAction("Index","Home");
+            }
+            else
+            {
+                Console.WriteLine("kirjautuminen ei onnistunut");
+                RedirectToAction("UserLogin");
+            }
+
+
+            return RedirectToAction("UserLogin");
         }
     }
 }

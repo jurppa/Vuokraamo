@@ -1,7 +1,21 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Http
+
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
     ViewData["Title"] = "Home Page";
 }
-@ViewBag.Data
+
+@{string isUser = HttpContextAccessor.HttpContext.Session.GetString("ckey");}
+
+
+@{if (isUser == "customer")
+    {
+    <p>
+        Olet kirjautuneena käyttäjänä:
+        @ViewBag.customerName
+    </p>
+    } }
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
