@@ -40,7 +40,7 @@ namespace Vuokraamo.Controllers
 
 
 
-            return View();
+            return RedirectToAction("UserLogin", "Login");
       
        }
         [HttpGet]
