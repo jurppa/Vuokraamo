@@ -40,6 +40,13 @@ namespace Vuokraamo.Controllers
             return View(products);
         }
 
+        public IActionResult Details(int id)
+        {
+            VarastoDBContext db = _context;
+            Console.WriteLine(id);
+            return View(db.Products.Where(a => a.Id == id).First());
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
