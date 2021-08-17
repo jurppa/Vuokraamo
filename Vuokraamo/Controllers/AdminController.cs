@@ -21,7 +21,7 @@ namespace Vuokraamo.Controllers
         [HttpPost]
         public IActionResult AddProduct(Product product)
         {
-            return View("Index")
+            return View("Index");
         }
     }
 }

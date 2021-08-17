@@ -1,5 +1,9 @@
 ﻿@model Vuokraamo.Models.Product
 
-@Model.Name
+<h1>@Model.Name</h1>
+@Model.Price €
+<br />
+<img class="img-fluid" src="~/images/@Model.ImageUrl" />
+<br />
+<h4>Esittely</h4>
 @Model.Info
-@Model.Price
