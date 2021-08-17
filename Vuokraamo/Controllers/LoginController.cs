@@ -42,7 +42,7 @@ namespace Vuokraamo.Controllers
                 HttpContext.Session.SetString("key", "admin");
 
                 Console.WriteLine("kirjautuminen onnistui");
-                return RedirectToAction("Success");
+                return RedirectToAction("Index","Admin");
             }
             else
             {
