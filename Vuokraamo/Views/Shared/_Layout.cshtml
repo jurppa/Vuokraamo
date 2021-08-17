@@ -35,13 +35,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ProductList">Tuotteet</a>
                         </li>
-
                         <li>
                             @{if (isUser == "customer")
                                 {
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="LogOut">Log out</a>
 
-                                    <a> @HttpContextAccessor.HttpContext.Session.GetString("cname")</a>
+                                    <div style="position:absolute; right:200px; top:18px; ">
+                                        <a> @Html.ActionLink(@HttpContextAccessor.HttpContext.Session.GetString("cname"), "asiakas", "user")</a>
+                                    </div>
 
                                 }
                                 else if (isAdmin == "admin")
