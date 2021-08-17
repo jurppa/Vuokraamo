@@ -30,6 +30,8 @@ namespace Vuokraamo.Controllers
         
         public IActionResult ProductList(int number = 0)
         {
+            //if(number < 0)
+            //{ number = 0; }
             Console.WriteLine($"ID on: {0}", number);
             VarastoDBContext db = _context;
             ViewBag.number = number;

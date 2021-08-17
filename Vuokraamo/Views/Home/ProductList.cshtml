@@ -13,6 +13,8 @@
 
     }
 </div>
-
-@Html.ActionLink("Edellinen", "ProductList", new { number = id - 1 })
-@Html.ActionLink("Seuraava", "ProductList", new { number = id + 1 })
+@if(id >= 1)
+            {
+    @Html.ActionLink("Edellinen", "ProductList", new { number = id - 1 })
+            }
+    @Html.ActionLink("Seuraava", "ProductList", new { number = id + 1 })
