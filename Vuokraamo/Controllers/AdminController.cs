@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,13 @@ namespace Vuokraamo.Controllers
     public class AdminController : Controller
     {
         private readonly VarastoDBContext _context;
+        private IWebHostEnvironment webHostEnvironment;
 
-        public AdminController(VarastoDBContext context)
+
+        public AdminController(VarastoDBContext context, IWebHostEnvironment _env)
         {
             _context = context;
+            webHostEnvironment = _env;
         }
 
         public IActionResult Index()
@@ -34,7 +38,7 @@ namespace Vuokraamo.Controllers
             var upload = @"~\wwwroot\images\";
             var fileName = imageUrl.FileName;
             product.ImageUrl = fileName;
-            string filePath = Path.Combine(upload, fileName);
+            string filePath = Path.Combine(webHostEnvironment.WebRootPath, "images", fileName);
             
             using (var fileStream = new FileStream(filePath, FileMode.Create))
             {
