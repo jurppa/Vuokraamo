@@ -34,8 +34,8 @@ namespace Vuokraamo.Controllers
         [HttpPost]
         public IActionResult AddProduct(Product product, IFormFile imageUrl)
         {
+            
             VarastoDBContext db = _context;
-            var upload = @"~\wwwroot\images\";
             var fileName = imageUrl.FileName;
             product.ImageUrl = fileName;
             string filePath = Path.Combine(webHostEnvironment.WebRootPath, "images", fileName);
