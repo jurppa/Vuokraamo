@@ -40,7 +40,7 @@ namespace Vuokraamo.Controllers
             if(admin.Password == password)
             {
                 HttpContext.Session.SetString("key", "admin");
-
+                
                 Console.WriteLine("kirjautuminen onnistui");
                 return RedirectToAction("Index","Admin");
             }
