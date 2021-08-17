@@ -49,6 +49,12 @@ namespace Vuokraamo.Controllers
             VarastoDBContext db = _context;
             int cstId = (int)HttpContext.Session.GetInt32("cid");
             return View(db.Customers.Where(a => a.CustomerId == cstId).FirstOrDefault());
-            }
+        }
+
+        public IActionResult Asiakas()
+        {
+            return View();
+        }
+
     }
 }
