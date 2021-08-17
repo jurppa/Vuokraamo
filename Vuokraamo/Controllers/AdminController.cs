@@ -29,13 +29,19 @@ namespace Vuokraamo.Controllers
         [HttpGet]
         public IActionResult AddProduct()
         {
+            string cstId = HttpContext.Session.GetString("key");
+            if (cstId == "admin")
+            {
             return View();
+            }
+            return RedirectToAction("index", "home");
+
+
         }
         [HttpPost]
         public IActionResult AddProduct(Product product, IFormFile imageUrl)
-        {
+        {            
             VarastoDBContext db = _context;
-            var upload = @"~\wwwroot\images\";
             var fileName = imageUrl.FileName;
             product.ImageUrl = fileName;
             string filePath = Path.Combine(webHostEnvironment.WebRootPath, "images", fileName);
