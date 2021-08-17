@@ -21,6 +21,10 @@ namespace Vuokraamo.Controllers
         [HttpPost]
         public IActionResult AddProduct(Product product)
         {
+            var files = HttpContext.Request.Form.Files;
+            var upload = @"~\wwwroot\images";
+
+
             return View("Index");
         }
     }
