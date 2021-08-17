@@ -75,7 +75,7 @@ namespace Vuokraamo.Controllers
             if (customer.Password == password)
             {
                 HttpContext.Session.SetString("ckey", "customer");
-                ViewBag.customerName = customer.Name;
+                HttpContext.Session.SetString("cname", customer.Name);
                 Console.WriteLine("kirjautuminen onnistui");
                 return RedirectToAction("Index","Home");
             }
