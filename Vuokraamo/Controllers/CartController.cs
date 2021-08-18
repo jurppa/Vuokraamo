@@ -25,11 +25,18 @@ namespace Vuokraamo.Controllers
             return View(customersCart);
         }
         [HttpPost]
-        public IActionResult LisääOstoskoriin(Cart product)
+        public IActionResult LisääOstoskoriin(int productId)
         {
             int cstId = (int)HttpContext.Session.GetInt32("cid");
             VarastoDBContext db = _context;
-            db.Carts.Add(product);
+            Product productToAdd = db.Products.Where(a => a.Id == productId).FirstOrDefault();
+
+            Cart customersCart = new Cart();
+            customersCart.CustomerId = cstId;
+            customersCart.ProductId = productToAdd.Id;
+            customersCart.ProductPrice = (decimal) productToAdd.Price;
+            customersCart.ProductName = productToAdd.Name;
+            db.Carts.Add(customersCart);
             return RedirectToAction("Home", "ProductList");
 
         }
