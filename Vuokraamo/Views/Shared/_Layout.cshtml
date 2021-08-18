@@ -40,26 +40,31 @@
                                 {
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="LogOut">Log out</a>
 
-                                    <div style="position:absolute; right:200px; top:18px; ">
+                                    <div style="position:absolute; right:200px; top:20px; ">
                                         <a> @Html.ActionLink(@HttpContextAccessor.HttpContext.Session.GetString("cname"), "asiakas", "user")</a>
-                                    </div>
+                                    </div> 
+                                    <div style="position:absolute; right:300px; top:10px; ">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Ostoskori">Ostoskori</a>
+                                        </div>
 
-                                }
-                                else if (isAdmin == "admin")
-                                    {
+                                  
+                                        
+                                        }
+                                        else if (isAdmin == "admin")
+                                        {
 
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="LogOut">Log out</a>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="LogOut">Log out</a>
 
-                                    <a>  @HttpContextAccessor.HttpContext.Session.GetString("key")</a>
+                                        <a>  @HttpContextAccessor.HttpContext.Session.GetString("key")</a>
 
-                                    }
-                            else
-                            {
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="UserLogin">Kirjaudu sisään</a>
+                                        }
+                                        else
+                                        {
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="UserLogin">Kirjaudu sisään</a>
 
-                            }
-                            }
-                        </li>
+                                        }
+                                        }
+</li>
                     </ul>
                 </div>
             </div>
