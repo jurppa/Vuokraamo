@@ -24,7 +24,7 @@ namespace Vuokraamo.Controllers
 
             return View(customersCart);
         }
-        [HttpPost]
+        [HttpGet]
         public IActionResult LisääOstoskoriin(int productId)
         {
             int cstId = (int)HttpContext.Session.GetInt32("cid");
@@ -37,7 +37,8 @@ namespace Vuokraamo.Controllers
             customersCart.ProductPrice = (decimal) productToAdd.Price;
             customersCart.ProductName = productToAdd.Name;
             db.Carts.Add(customersCart);
-            return RedirectToAction("Home", "ProductList");
+            db.SaveChanges();
+            return RedirectToAction("ProductList", "Home");
 
         }
     }

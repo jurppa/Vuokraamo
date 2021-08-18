@@ -7,6 +7,9 @@
     {
     <div class="col-4">
         <h3 style="text-align: center">@Html.ActionLink(@product.Name, "Details", new { id = product.Id })</h3> Hinta: @product.Price €
+  
+        <button type="submit"> @Html.ActionLink("Lisää ostoskoriin", "lisääostoskoriin", "cart", new { productId = product.Id }) </button>
+   
         @if (product.ImageUrl == null)
         {
             <img class="img-fluid" src="~/images/default-product-image.png" />
