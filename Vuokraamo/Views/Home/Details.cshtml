@@ -31,7 +31,7 @@
 @{string isAdmin = HttpContextAccessor.HttpContext.Session.GetString("key");}
 @{if (isAdmin == "admin")
     {
-
-        @Html.ActionLink("Poista tuote", "DeleteProduct", "Admin", new { Id = Model.Id });
-
+        <h4>Hallinnoi tuotetta</h4>
+        @Html.ActionLink("Poista tuote", "DeleteProduct", "Admin", new { Id = Model.Id });<br />
+        @Html.ActionLink("Editoi tuotetta", "Edit", "Admin", new { Id = Model.Id })
     } } 

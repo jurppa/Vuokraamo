@@ -66,5 +66,29 @@ namespace Vuokraamo.Controllers
             db.SaveChanges();
             return RedirectToAction("ProductList", "Home");
         }
+        public IActionResult Edit(int Id)
+        {
+            VarastoDBContext db = _context;
+            Product editoitavaTuote = db.Products.Where(a => a.Id == Id).FirstOrDefault();
+
+            return View(editoitavaTuote);
+        }
+        [HttpPost]
+        public IActionResult Edit(Product product, IFormFile imageUrl)
+        {
+            VarastoDBContext db = _context;
+            var fileName = imageUrl.FileName;
+            product.ImageUrl = fileName;
+            string filePath = Path.Combine(webHostEnvironment.WebRootPath, "images", fileName);
+
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                imageUrl.CopyTo(fileStream);
+            }
+            db.Products.Update(product);
+            db.SaveChanges();
+            return RedirectToAction("ProductList", "Home");
+
+        }
     }
 }
