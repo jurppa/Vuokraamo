@@ -17,12 +17,21 @@ namespace Vuokraamo.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Ostoskori()
         {
             int cstId = (int)HttpContext.Session.GetInt32("cid");
             Cart customersCart = _context.Carts.Where(a => a.CustomerId == cstId).First();
 
-            return View();
+            return View(customersCart);
+        }
+        [HttpPost]
+        public IActionResult LisääOstoskoriin(Cart product)
+        {
+            int cstId = (int)HttpContext.Session.GetInt32("cid");
+            VarastoDBContext db = _context;
+            db.Carts.Add(product);
+            return RedirectToAction("Home", "ProductList");
+
         }
     }
 }
