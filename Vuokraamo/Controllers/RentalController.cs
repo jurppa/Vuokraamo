@@ -48,11 +48,13 @@ namespace Vuokraamo.Controllers
                 rental.Rentaldate = dt;
                 rental.Returndate = dt.AddDays(7);
                 db.Rentals.Add(rental);
+                db.Carts.Remove(a);
                 db.SaveChanges();
-
             }
 
-            return View("VuokrausTiedot");
+
+
+            return RedirectToAction("Vuokraustiedot");
         }
     }
 }
