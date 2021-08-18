@@ -8,7 +8,7 @@ namespace Vuokraamo.Models
 {
     public partial class VarastoDBContext : DbContext
     {
-       
+     
 
         public VarastoDBContext(DbContextOptions<VarastoDBContext> options)
             : base(options)
@@ -53,9 +53,7 @@ namespace Vuokraamo.Models
             {
                 entity.ToTable("Cart");
 
-                entity.Property(e => e.CartId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("CartID");
+                entity.Property(e => e.CartId).HasColumnName("CartID");
 
                 entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
 
