@@ -28,7 +28,7 @@ namespace Vuokraamo.Controllers
             .Where(b => b.Id == a.ProductId)
             .FirstOrDefault());
 
-            return View();
+            return View(Vuokrat);
         }
     }
 }
