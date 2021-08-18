@@ -1,12 +1,16 @@
 ﻿@model List<Rental>
 
+<h1><b>Vuokraustiedot</b></h1>
+<br /><br />
 @foreach (var i in Model)
 {
+<h3>Vuokraus ID: @i.RentalId</h3>
     <ul>
-        <li>@i.ProductId</li>
-        <li>@i.Product.Name</li>
-        <li>@i.Price</li>
-        <li>@i.Rentaldate.ToShortDateString()</li>
-        <li>@i.Returndate.ToShortDateString()</li>
+        <li><b>Tuote:</b> @i.Product.Name</li>
+        <li><b>Hinta:</b> @i.Price €</li> 
+        <li><b>Vuokrauspäivä:</b> @i.Rentaldate.ToShortDateString()</li>
+        <li><b>Palautuspäivä:</b> @i.Returndate.ToShortDateString()</li>        
     </ul>
+       <br /> 
+
 }
