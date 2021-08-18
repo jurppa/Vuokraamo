@@ -1,4 +1,8 @@
 ﻿@model Vuokraamo.Models.Product
+@using Microsoft.AspNetCore.Http
+
+@inject IHttpContextAccessor HttpContextAccessor
+
 
 <h1>@Model.Name</h1>
 @Model.Price €
@@ -24,3 +28,10 @@
     </font>
 
 }
+@{string isAdmin = HttpContextAccessor.HttpContext.Session.GetString("key");}
+@{if (isAdmin == "admin")
+    {
+
+        @Html.ActionLink("Poista tuote", "DeleteProduct", "Admin", new { Id = Model.Id });
+
+    } } 

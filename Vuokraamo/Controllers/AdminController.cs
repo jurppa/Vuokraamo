@@ -55,5 +55,16 @@ namespace Vuokraamo.Controllers
 
             return View("Index");
         }
+        [HttpGet]
+        public IActionResult DeleteProduct(int Id)
+        {
+            Console.WriteLine("delete product :"+ Id);
+            VarastoDBContext db = _context;
+            Product productToRemove = db.Products.Where(a => a.Id == Id).FirstOrDefault();
+            Console.WriteLine(productToRemove.Name);
+            db.Products.Remove(productToRemove);
+            db.SaveChanges();
+            return RedirectToAction("ProductList", "Home");
+        }
     }
 }
