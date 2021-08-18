@@ -30,5 +30,15 @@ namespace Vuokraamo.Controllers
 
             return View(Vuokrat);
         }
+        public IActionResult Osta()
+        {
+            int cstId = (int)HttpContext.Session.GetInt32("cid");
+
+            VarastoDBContext db = _context;
+            List<Cart> asiakkaanOstokset = db.Carts.Where(a => a.CustomerId == cstId).ToList();
+            
+
+            return View("VuokrausTiedot");
+        }
     }
 }
