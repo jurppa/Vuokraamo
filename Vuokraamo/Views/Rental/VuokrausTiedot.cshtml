@@ -2,8 +2,58 @@
 
 <h1><b>Vuokraustiedot</b></h1>
 <br /><br />
-@foreach (var i in Model)
-{
+<h3>Voimassa olevat vuokraukset</h3>
+<table width="100%" , border="1">
+    <tr>
+        <th><b>Vuokraus ID</b></th>
+        <th><b>Tuote</b></th>
+        <th><b>Hinta</b></th>
+        <th><b>Vuokrauspäivä</b></th>
+        <th><b>Palautuspäivä</b></th>
+    </tr>
+    @foreach (var i in Model)
+    {
+        if (i.Returndate > DateTime.Now)
+        {
+            <tr>
+                <td>@i.RentalId</td>
+                <td>@i.Product.Name</td>
+                <td>@i.Price</td>
+                <td>@i.Rentaldate.ToShortDateString()</td>
+                <td>@i.Returndate.ToShortDateString()</td>
+            </tr>
+        }
+        else
+        {
+            <p><em>Ei voimassa olevia vuokrauksia</em></p>
+        }
+    }
+</table>
+<br /><br />
+<h3>Vanhat vuokraukset</h3>
+<table width="100%" , border="1">
+    <tr>
+        <th><b>Vuokraus ID</b></th>
+        <th><b>Tuote</b></th>
+        <th><b>Hinta</b></th>
+        <th><b>Vuokrauspäivä</b></th>
+        <th><b>Palautuspäivä</b></th>
+    </tr>
+    @foreach (var i in Model)
+    {
+        if (i.Returndate < DateTime.Now)
+        {
+            <tr>
+                <td>@i.RentalId</td>
+                <td>@i.Product.Name</td>
+                <td>@i.Price</td>
+                <td>@i.Rentaldate.ToShortDateString()</td>
+                <td>@i.Returndate.ToShortDateString()</td>
+            </tr>
+        }
+    }
+</table>
+@*{
 <h3>Vuokraus ID: @i.RentalId</h3>
     <ul>
         <li><b>Tuote:</b> @i.Product.Name</li>
@@ -13,4 +63,4 @@
     </ul>
        <br /> 
 
-}
+}*@
