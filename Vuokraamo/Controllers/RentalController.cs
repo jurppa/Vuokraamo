@@ -20,6 +20,7 @@ namespace Vuokraamo.Controllers
         [HttpGet]
         public IActionResult VuokrausTiedot()
         {
+
             VarastoDBContext db = _context;
             int cstId = (int)HttpContext.Session.GetInt32("cid");
             List<Rental> Vuokrat = db.Rentals.Where(a => a.CustomerId == cstId).ToList();
