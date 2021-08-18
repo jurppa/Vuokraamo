@@ -1,7 +1,29 @@
-﻿@model Cart 
+﻿@model List<Vuokraamo.Models.Cart>
 
-@Model.CustomerId
-@Model.ProductName
-@Model.ProductPrice 
+@{ ViewData["Title"] = "Cart";}
 
 
+<h2>Ostoskori</h2>
+
+<form method="get">
+    <div>
+        <table width="100%" , border="1">
+            <tr>               
+                <th>Tuotenimi</th>
+                <th>Hinta</th>
+                <th>TuoteId</th>
+                <th>AsiakasId</th>
+            </tr>
+
+            @foreach (var a in Model)
+            {
+                <tr>                   
+                    <td>@a.ProductName</td>
+                    <td>@a.ProductPrice</td>
+                    <td>@a.ProductId</td>
+                    <td>@a.CustomerId</td>
+                </tr>
+            }
+        </table>
+    </div>
+</form>

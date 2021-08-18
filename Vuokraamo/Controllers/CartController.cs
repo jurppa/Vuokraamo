@@ -20,7 +20,7 @@ namespace Vuokraamo.Controllers
         public IActionResult Ostoskori()
         {
             int cstId = (int)HttpContext.Session.GetInt32("cid");
-            Cart customersCart = _context.Carts.Where(a => a.CustomerId == cstId).First();
+            List <Cart> customersCart = _context.Carts.Where(a => a.CustomerId == cstId).ToList();
 
             return View(customersCart);
         }
