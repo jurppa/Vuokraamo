@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -8,7 +7,12 @@ namespace Vuokraamo.Models
 {
     public partial class Customer
     {
-        [Key]
+        public Customer()
+        {
+            Carts = new HashSet<Cart>();
+            Rentals = new HashSet<Rental>();
+        }
+
         public int CustomerId { get; set; }
         public string Name { get; set; }
         public int? Age { get; set; }
@@ -18,5 +22,8 @@ namespace Vuokraamo.Models
         public string Email { get; set; }
         public string Tel { get; set; }
         public string Password { get; set; }
+
+        public virtual ICollection<Cart> Carts { get; set; }
+        public virtual ICollection<Rental> Rentals { get; set; }
     }
 }
