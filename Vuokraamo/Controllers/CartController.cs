@@ -41,5 +41,14 @@ namespace Vuokraamo.Controllers
             return RedirectToAction("ProductList", "Home");
 
         }
+        public IActionResult Poista(int Id)
+        {
+            VarastoDBContext db = _context;
+            Cart poistettava = db.Carts.Where(a => a.CartId == Id).FirstOrDefault();
+            db.Carts.Remove(poistettava);
+            db.SaveChanges();
+
+            return RedirectToAction("Ostoskori");
+        }
     }
 }
