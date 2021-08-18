@@ -36,7 +36,21 @@ namespace Vuokraamo.Controllers
 
             VarastoDBContext db = _context;
             List<Cart> asiakkaanOstokset = db.Carts.Where(a => a.CustomerId == cstId).ToList();
-            
+            List<Rental> vuokratut = new List<Rental>();
+
+            foreach (var a in asiakkaanOstokset)
+            {
+                DateTime dt = DateTime.Now;
+                Rental rental = new Rental();
+                rental.CustomerId = a.CustomerId;
+                rental.Price = Convert.ToInt32(a.ProductPrice);
+                rental.ProductId = (int)a.ProductId;
+                rental.Rentaldate = dt;
+                rental.Returndate = dt.AddDays(7);
+                db.Rentals.Add(rental);
+                db.SaveChanges();
+
+            }
 
             return View("VuokrausTiedot");
         }
