@@ -43,6 +43,8 @@ namespace Vuokraamo.Controllers
             {
                 DateTime dt = DateTime.Now;
                 Rental rental = new Rental();
+                Product product = db.Products.Where(b => b.Id == a.ProductId).FirstOrDefault();
+                product.Amount--;
                 rental.CustomerId = a.CustomerId;
                 rental.Price = Convert.ToInt32(a.ProductPrice);
                 rental.ProductId = (int)a.ProductId;

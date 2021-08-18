@@ -22,6 +22,7 @@
                     <td>@a.ProductPrice</td>
                     <td>@a.ProductId</td>
                     <td>@a.CustomerId</td>
+                    <td>@Html.ActionLink("Poista", "poista", new {Id = a.CartId })</td>
                 </tr>
             }
         </table>
