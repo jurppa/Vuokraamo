@@ -24,7 +24,11 @@ namespace Vuokraamo.Controllers
             int cstId = (int)HttpContext.Session.GetInt32("cid");
             List<Rental> Vuokrat = db.Rentals.Where(a => a.CustomerId == cstId).ToList();
 
-            return View(Vuokrat);
+            Vuokrat.ForEach(a => a.Product = db.Products
+            .Where(b => b.Id == a.ProductId)
+            .FirstOrDefault());
+
+            return View();
         }
     }
 }
