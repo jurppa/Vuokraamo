@@ -2,37 +2,40 @@
 @using Microsoft.AspNetCore.Http
 
 @inject IHttpContextAccessor HttpContextAccessor
-
-
-<h1>@Model.Name</h1>
-@Model.Price €
-<br />
-
-
-@if (Model.Amount > 0)
-{
-    <br />
-    <p><em>Tuotetta on tällä hetkellä @Model.Amount kpl saatavilla</em></p>
-    <button type="submit"> @Html.ActionLink("Lisää ostoskoriin", "lisääostoskoriin", "cart", new { productId = Model.Id }) </button>
-    <br />
-}
-@if (@Model.Amount <= 0)
-{
-    <br />
-    <font color="red">
-        <p color="red"><em>Kaikki tuotteet ovat tällä hetkellä vuokralla.</em></p>
-    </font>
-
-}
-<img class="img-fluid" src="~/images/@Model.ImageUrl" />
-<br />
-<h4>Esittely</h4>
-@Model.Info
-<br />
-@{string isAdmin = HttpContextAccessor.HttpContext.Session.GetString("key");}
-@{if (isAdmin == "admin")
-    {
-        <h4>Hallinnoi tuotetta</h4>
-        @Html.ActionLink("Poista tuote", "DeleteProduct", "Admin", new { Id = Model.Id });<br />
-        @Html.ActionLink("Editoi tuotetta", "Edit", "Admin", new { Id = Model.Id })
-    } } 
+    <div class="row">
+        <div class="column">
+            <img class="img-fluid" src="~/images/@Model.ImageUrl" />
+            <br />
+        </div>
+        <div class="column">
+            <h1>@Model.Name</h1>
+            @Model.Price €
+            <br />
+            @if (Model.Amount > 0)
+            {
+                <br />
+                <p><em>Tuotetta on tällä hetkellä @Model.Amount kpl saatavilla</em></p>
+                <button type="submit"> @Html.ActionLink("Lisää ostoskoriin", "lisääostoskoriin", "cart", new { productId = Model.Id }) </button>
+                <br />
+            }
+            @if (@Model.Amount <= 0)
+            {
+                <br />
+                <font color="red">
+                    <p color="red"><em>Kaikki tuotteet ovat tällä hetkellä vuokralla.</em></p>
+                </font>
+                <br />
+            }
+            <br />
+            <h4>Esittely</h4>
+            @Model.Info
+            <br />
+            @{string isAdmin = HttpContextAccessor.HttpContext.Session.GetString("key");}
+            @{if (isAdmin == "admin")
+                {
+                    <h4>Hallinnoi tuotetta</h4>
+                    @Html.ActionLink("Poista tuote", "DeleteProduct", "Admin", new { Id = Model.Id });<br />
+                    @Html.ActionLink("Editoi tuotetta", "Edit", "Admin", new { Id = Model.Id })
+                } }
+        </div>
+    </div>

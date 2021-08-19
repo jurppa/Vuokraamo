@@ -16,7 +16,13 @@
     text-align:center;
 }
 body {
-    background-image: url(../images/69635702-white-wooden-plank-texture-light-rustic-background.jpg);
-    opacity: 1;
+    background-image: url("https://lh3.googleusercontent.com/proxy/lyHUxwXT_fsDgv_jWV_hoAwIH3RclabcoS5aum6jb7eKapQ4UAJQMIBXHrS6ebOPtiUyTZf4kdw3NPveT2T7cQBP9ReDLOr9tWgWZIFGd5-t3LPmpxsRvooKj7bjcHGPDkLBeH2TIKk9nu3q6Cw7odP4bkMq9Tg1WAkh9O7xULzowZ2EI7dt--43fMerZOumsXuV9AqatU_iqfbwXrHj1uA");
+}
+.row {
+    display: flex;
+}
 
+.column {
+    flex: 50%;
+    padding: 10px;
 }
