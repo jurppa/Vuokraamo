@@ -1,19 +1,24 @@
 ﻿@model Vuokraamo.Models.Customer
 
-<h1>Omat tiedot</h1>
-<div class="col-4">
-    @Html.ActionLink("Omat tiedot", "AsiakasTiedot")  
+<h1 style="text-align:center">Omat tiedot</h1>
+<br/>
+<div class="col-md-5">
+    <button>@Html.ActionLink("Omat tiedot", "AsiakasTiedot")</button>
 
 </div>
-<div class="col-4">
-    @Html.ActionLink("Vuokraus tiedot","VuokrausTiedot", "Rental")
+<br/>
+<div class="col-md-5">
+    <button>@Html.ActionLink("Vuokraustiedot", "VuokrausTiedot", "Rental") </button>
 </div>
-<div class="col-4">
-    @Html.ActionLink("Laskuni", "Laskut")
+<br/>
+<div class="col-md-5">
+    <button> @Html.ActionLink("Laskuni", "Laskut")</button>
 </div>
-<div class="col-4">
-@Html.ActionLink("Log Out" , "LogOut", "Login") 
+<br/>
+<div class="col-md-5">
+    <button>@Html.ActionLink("Log Out", "LogOut", "Login") </button>
 </div>
-<div class=" = col-4">
-  @Html.ActionLink("Palaute","index", "message")
+<br/>
+<div class=" = col-md-5">
+    <button>@Html.ActionLink("Palaute", "index", "message")</button>
 </div>
