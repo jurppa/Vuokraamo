@@ -74,7 +74,7 @@ namespace Vuokraamo.Controllers
             int cstId = (int)HttpContext.Session.GetInt32("cid");
 
             VarastoDBContext db = _context;
-            List<Invoice> asiakkaanLaskut = db.Invoices.Where(a => a.CustomerId == cstId).ToList();
+            List<Invoice> asiakkaanLaskut = db.Invoices.Where(a => a.CustomerId == cstId).OrderBy(a => a.Paid).ThenBy(a => a.DueDate).ToList();
             return View(asiakkaanLaskut);
         }
         public IActionResult Maksa(int id)

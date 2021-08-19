@@ -1,18 +1,30 @@
 ﻿@model List<Invoice>
+<div class="container">
 @foreach (var lasku in Model)
 {
     if ((bool)!lasku.Paid)
     {
-        <p>Laskun numero:</p>@lasku.InvoiceId
-        <p>Eräpäivä:</p>@lasku.DueDate
-        <p>Maksettava summa:</p>@lasku.TotalDue
-        @Html.ActionLink("Maksa:", "Maksa", new {Id = lasku.InvoiceId })
+    <div class="row">
+        <div class="maksamatta col-4">
+    
+        <p>Laskun numero: @lasku.InvoiceId</p><br />
+        <p>Eräpäivä: @lasku.DueDate.ToShortDateString()</p>
+        <p>Maksettava summa: @lasku.TotalDue €</p>
+        <button class="maksunappi">@Html.ActionLink("Maksa", "Maksa", new {Id = lasku.InvoiceId })</button>
+        
+    </div>
+    </div>
     }
     else
     {
-        <p>Laskun numero:</p>@lasku.InvoiceId
+        <div class="row">
+        <div col="maksetut col-4">
+        <p>Laskun numero: </p>@lasku.InvoiceId
         <p>Eräpäivä: MAKSETTU</p>
-        <p>Maksettu summa:</p>@lasku.TotalDue
+        <p>Maksettu summa: </p>@lasku.TotalDue €
+
+        </div>
+        </div>
     }
 
-}
+}</div>
