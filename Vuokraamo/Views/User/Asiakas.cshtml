@@ -1,16 +1,19 @@
 ﻿@model Vuokraamo.Models.Customer
 
 <h1>Omat tiedot</h1>
-<div class="col-3">
+<div class="col-4">
     @Html.ActionLink("Omat tiedot", "AsiakasTiedot")  
 
 </div>
-<div class="col-3">
+<div class="col-4">
     @Html.ActionLink("Vuokraus tiedot","VuokrausTiedot", "Rental")
 </div>
-<div class="col-3">
+<div class="col-4">
     @Html.ActionLink("Laskuni", "Laskut")
 </div>
-<div class="col-3">
+<div class="col-4">
 @Html.ActionLink("Log Out" , "LogOut", "Login") 
+</div>
+<div class=" = col-4">
+  @Html.ActionLink("Palaute","index", "message")
 </div>

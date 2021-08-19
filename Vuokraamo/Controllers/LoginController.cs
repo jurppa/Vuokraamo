@@ -33,10 +33,12 @@ namespace Vuokraamo.Controllers
         {
             VarastoDBContext db = _context;
             Admin admin = db.Admins.Where(a => a.Email == email).FirstOrDefault();
+            
             if(admin == null)
             {
                 RedirectToAction("AdminLogin");
             }
+            
             if(admin.Password == password)
             {
                 HttpContext.Session.SetString("key", "admin");
@@ -78,8 +80,7 @@ namespace Vuokraamo.Controllers
                 Console.WriteLine("kirjautuminen onnistui");
                 return RedirectToAction("Index","Home");
                 }
-            //    ModelState.AddModelError("", "The user name or password provided is incorrect.");
-            //    RedirectToAction("UserLogin");
+            
            }
                  
             else
