@@ -16,7 +16,7 @@ namespace Vuokraamo.Controllers
         {
             _context = context;
         }
-
+                                // Haetaan asiakkaan ostoskori Id:n perusteella, id tallennettu sessioon
         public IActionResult Ostoskori()
         {
             int cstId = (int)HttpContext.Session.GetInt32("cid");
@@ -24,6 +24,7 @@ namespace Vuokraamo.Controllers
 
             return View(customersCart);
         }
+                                // Lisää tuote ostoskorin tietokantaan, asiakkaan id:llä
         [HttpGet]
         public IActionResult LisääOstoskoriin(int productId)
         {
@@ -41,6 +42,7 @@ namespace Vuokraamo.Controllers
             return RedirectToAction("ProductList", "Home");
 
         }
+                                // poistaa tuotteen ostoskorista
         public IActionResult Poista(int Id)
         {
             VarastoDBContext db = _context;

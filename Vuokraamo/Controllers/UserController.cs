@@ -27,22 +27,19 @@ namespace Vuokraamo.Controllers
         {
             return View();
         }
-
+                                // Tässä voidaan luoda uusi käyttäjä. 
         [HttpPost]
-        public IActionResult Rekisteröidy(Customer Create)    // Tässä Controllerissa voidaan luoda uusi käyttäjä. 
+        public IActionResult Rekisteröidy(Customer Create)    
         {
             VarastoDBContext db = _context;
             var q = db.Customers;
             db.Customers.Add(Create);
             db.SaveChanges();
 
-
-
-
-
             return RedirectToAction("UserLogin", "Login");
 
         }
+                            // näyttää asiakkaan tiedot
         [HttpGet]
         public IActionResult AsiakasTiedot()
         {
@@ -56,7 +53,7 @@ namespace Vuokraamo.Controllers
         {
             return View();
         }
-
+                            // Asiakkaan tietojen päivitys
         [HttpPost]
         
         public IActionResult AsiakasTiedot(Customer customer)
@@ -68,6 +65,7 @@ namespace Vuokraamo.Controllers
 
             return RedirectToAction("Asiakastiedot", customer.CustomerId);
         }
+                            // Hakee laskut
         [HttpGet]
         public IActionResult Laskut()
         {
@@ -77,6 +75,7 @@ namespace Vuokraamo.Controllers
             List<Invoice> asiakkaanLaskut = db.Invoices.Where(a => a.CustomerId == cstId).OrderBy(a => a.Paid).ThenBy(a => a.DueDate).ToList();
             return View(asiakkaanLaskut);
         }
+                               // Merkitsee laskun maksetuksi
         public IActionResult Maksa(int id)
         {
             VarastoDBContext db = _context;

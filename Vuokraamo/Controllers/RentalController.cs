@@ -16,7 +16,7 @@ namespace Vuokraamo.Controllers
         {
             _context = context;
         }
-
+                        //palauttaa asiakkaan vuokraustiedot
         [HttpGet]
         public IActionResult VuokrausTiedot()
         {
@@ -31,6 +31,7 @@ namespace Vuokraamo.Controllers
 
             return View(Vuokrat);
         }
+                                    // Siirtää ostoskorissa olevat tuotteet vuokralle
         public IActionResult Osta()
         {
             int cstId = (int)HttpContext.Session.GetInt32("cid");
@@ -55,11 +56,11 @@ namespace Vuokraamo.Controllers
                 db.SaveChanges();
                 GeneroiLasku(rental);
             }
-            // Tässä kutsutaan apumetodia joka generoi laskun
 
 
             return RedirectToAction("Vuokraustiedot");
         }
+                         // apumetodia joka generoi laskun
         public void GeneroiLasku(Rental rental)
         {
             DateTime dt = DateTime.Now;
@@ -74,6 +75,7 @@ namespace Vuokraamo.Controllers
             db.SaveChanges();
 
         }
+                        // merkitsee tuotteen palautetuksi ja lisää sen takaisin tuotekantaan
         public IActionResult PalautaTuote(int Id)
         {
             VarastoDBContext db = _context;

@@ -22,6 +22,8 @@ namespace Vuokraamo.Controllers
         {
             return View();
         }
+
+                    // Adminiksi kirjautuminen, jos jo kirjautuneena ohjaa admin näkymään
         [HttpGet]
         public IActionResult AdminLogin()
         {
@@ -33,7 +35,7 @@ namespace Vuokraamo.Controllers
             }
             return View();
         }
-    
+                    // Admin kirjautumisen tarkistaminen
         [HttpPost]
         public IActionResult AdminLogin(string email, string password)
         {
@@ -71,6 +73,7 @@ namespace Vuokraamo.Controllers
         {
             return View();
         }
+                        // käyttäjän kirjautumisen tarkastus
         [HttpPost]
         public IActionResult UserLogin(string email, string password)
         {
@@ -98,6 +101,7 @@ namespace Vuokraamo.Controllers
 
             return RedirectToAction("UserLogin");
         }
+                                // uloskirjautuminen
         public IActionResult LogOut()
         {
             HttpContext.Session.Clear();

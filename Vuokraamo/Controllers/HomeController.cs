@@ -27,7 +27,7 @@ namespace Vuokraamo.Controllers
             ViewBag.Data = testi.Name;
             return View();
         }
-        
+                        // Kaikkien tuotteiden listausnäkymä
         public IActionResult ProductList(int number = 0)
         {
             //if(number < 0)
@@ -39,7 +39,7 @@ namespace Vuokraamo.Controllers
             List<Product> products = db.Products.Skip(number * showAmount).Take(showAmount).ToList();
             return View(products);
         }
-
+                            // yksittäisen tuotteen näkymä
         public IActionResult Details(int id)
         {
             VarastoDBContext db = _context;

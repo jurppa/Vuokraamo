@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 using Vuokraamo.Models;
 
 namespace Vuokraamo.Controllers
-{
+{                       // Ylläpitäjän toimintojen määrittelyt
     public class AdminController : Controller
     {
         private readonly VarastoDBContext _context;
         private IWebHostEnvironment webHostEnvironment;
 
-
+                            // Tietokanta saadaan dependency injectionilla
         public AdminController(VarastoDBContext context, IWebHostEnvironment _env)
         {
             _context = context;
@@ -26,6 +26,7 @@ namespace Vuokraamo.Controllers
         {
             return View();
         }
+                            //Tuotteen lisäysnäkymä admin oikeuksilla. Hakee sessiosta onko admin.
         [HttpGet]
         public IActionResult AddProduct()
         {
@@ -35,9 +36,9 @@ namespace Vuokraamo.Controllers
             return View();
             }
             return RedirectToAction("index", "home");
-
-
+        
         }
+                            //Lisätään tietokantaan tuote, tallennetaan kuva
         [HttpPost]
         public IActionResult AddProduct(Product product, IFormFile imageUrl)
         {            
@@ -55,6 +56,7 @@ namespace Vuokraamo.Controllers
 
             return View("Index");
         }
+                            // Poistetaan tuote Id:n perusteella
         [HttpGet]
         public IActionResult DeleteProduct(int Id)
         {
@@ -66,6 +68,7 @@ namespace Vuokraamo.Controllers
             db.SaveChanges();
             return RedirectToAction("ProductList", "Home");
         }
+                                // Tuotteen editointinäkymä
         public IActionResult Edit(int Id)
         {
             VarastoDBContext db = _context;
@@ -73,6 +76,7 @@ namespace Vuokraamo.Controllers
 
             return View(editoitavaTuote);
         }
+                                // Tallennetaan päivitetty tuote
         [HttpPost]
         public IActionResult Edit(Product product, IFormFile imageUrl)
         {
@@ -90,6 +94,7 @@ namespace Vuokraamo.Controllers
             return RedirectToAction("ProductList", "Home");
 
         }
+                                // Näyttää asikkaiden lähettämät viestit ad:lle
         [HttpGet]
         public IActionResult ShowMessage()
         {

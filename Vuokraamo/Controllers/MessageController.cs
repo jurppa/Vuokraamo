@@ -23,6 +23,8 @@ namespace Vuokraamo.Controllers
 
             return View();
         }
+
+                            // asiakaspalautteen jättäminen
         [HttpPost]
         public IActionResult Post(string aihe, string viesti, int id)
         {
