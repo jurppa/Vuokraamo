@@ -1,0 +1,10 @@
+﻿@model Message
+@using (Html.BeginForm("Post", "Message"))
+{
+    <div>
+        Aihe <input type="text" name="aihe" />
+        Viesti <input type="text" name="viesti" />
+        <input type="hidden" value="@ViewBag.id" name="Id"/>
+        <button type="submit">lisää</button>
+    </div>
+}

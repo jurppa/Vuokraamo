@@ -90,5 +90,16 @@ namespace Vuokraamo.Controllers
             return RedirectToAction("ProductList", "Home");
 
         }
+        [HttpGet]
+        public IActionResult ShowMessage()
+        {
+            VarastoDBContext db = _context;
+            string cstId = HttpContext.Session.GetString("key");
+            if (cstId == "admin")
+            {
+            return View(db.Messages.ToList());
+            }
+            return RedirectToAction("index", "home");
+        }
     }
 }

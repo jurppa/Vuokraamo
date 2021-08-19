@@ -1,0 +1,15 @@
+﻿@model List<Message>
+
+@foreach(var message in Model)
+{
+    <div style="background-color: white; border: 1px solid black" class="palaute">
+        <h2>@message.Title</h2>
+        <p>@message.Message1.</p>
+        <hr />
+        @if((bool) message.Done)
+                {
+                    <h2 class="done">✔Hoidettu</h2>
+                } else { <p>⌛Asiakaspalautteen käsittely kesken</p>}
+        
+    </div>
+}
