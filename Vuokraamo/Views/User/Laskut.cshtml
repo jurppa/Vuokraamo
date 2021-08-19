@@ -6,23 +6,24 @@
                        if ((bool)!lasku.Paid)
                        {
 
-                           <div class="row">
-                               <div class="maksamatta col-4">
-
-                                   <p>Laskun numero: @lasku.InvoiceId</p>
+                           <div>
+                               <div>
+                                   <br />
+                                   <p style="font-size:24px">Lasku numero: @lasku.InvoiceId</p>
                                    <p>Eräpäivä: @lasku.DueDate.ToShortDateString()</p>
                                    <p>Maksettava summa: <b>@lasku.TotalDue €</b></p>
                                    <button class="maksunappi">@Html.ActionLink("Maksa", "Maksa", new { Id = lasku.InvoiceId })</button>
-                                   
+                                   <br />
                                </div>
                            </div>
                        }
                        
                        else
                        {
-                           <div class="row">
-                               <div col="maksetut col-4">
-                                   <p>Laskun numero: @lasku.InvoiceId</p>
+                           <div>
+                               <div>
+                                   <br />
+                                   <p style="font-size:24px">Lasku numero: @lasku.InvoiceId</p>
                                    <p>Eräpäivä: MAKSETTU</p>
                                    <p>Maksettu summa: <b>@lasku.TotalDue €</b></p>
 
