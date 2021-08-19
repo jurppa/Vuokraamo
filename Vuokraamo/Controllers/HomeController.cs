@@ -35,7 +35,7 @@ namespace Vuokraamo.Controllers
             Console.WriteLine($"ID on: {0}", number);
             VarastoDBContext db = _context;
             ViewBag.number = number;
-            int showAmount = 5;
+            int showAmount = 8;
             List<Product> products = db.Products.Skip(number * showAmount).Take(showAmount).ToList();
             return View(products);
         }
