@@ -8,8 +8,8 @@
 
                            <div>
                                <div>
-
-                                   <p>Laskun numero: @lasku.InvoiceId</p>
+                                   <br />
+                                   <p style="font-size:24px">Lasku numero: @lasku.InvoiceId</p>
                                    <p>Eräpäivä: @lasku.DueDate.ToShortDateString()</p>
                                    <p>Maksettava summa: <b>@lasku.TotalDue €</b></p>
                                    <button class="maksunappi">@Html.ActionLink("Maksa", "Maksa", new { Id = lasku.InvoiceId })</button>
@@ -23,7 +23,7 @@
                            <div>
                                <div>
                                    <br />
-                                   <p>Laskun numero: @lasku.InvoiceId</p>
+                                   <p style="font-size:24px">Lasku numero: @lasku.InvoiceId</p>
                                    <p>Eräpäivä: MAKSETTU</p>
                                    <p>Maksettu summa: <b>@lasku.TotalDue €</b></p>
 
