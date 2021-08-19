@@ -21,9 +21,10 @@
                 <td>@i.Price</td>
                 <td>@i.Rentaldate.ToShortDateString()</td>
                 <td>@i.Returndate.ToShortDateString()</td>
+                <td>@Html.ActionLink("Palauta", "PalautaTuote", new {Id = i.RentalId})</td>
             </tr>
         }
-        else
+        else if (Model.Count == 0)
         {
             <p><em>Ei voimassa olevia vuokrauksia</em></p>
         }
