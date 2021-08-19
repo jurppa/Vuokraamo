@@ -8,7 +8,7 @@ namespace Vuokraamo.Models
 {
     public partial class VarastoDBContext : DbContext
     {
-     
+       
 
         public VarastoDBContext(DbContextOptions<VarastoDBContext> options)
             : base(options)
@@ -18,6 +18,8 @@ namespace Vuokraamo.Models
         public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Invoice> Invoices { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Rental> Rentals { get; set; }
 
@@ -73,7 +75,8 @@ namespace Vuokraamo.Models
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.Carts)
                     .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK__Cart__ProductID__628FA481");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_ProductID_ID");
             });
 
             modelBuilder.Entity<Customer>(entity =>
@@ -95,6 +98,42 @@ namespace Vuokraamo.Models
                     .HasMaxLength(50);
 
                 entity.Property(e => e.Tel).HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<Invoice>(entity =>
+            {
+                entity.ToTable("Invoice");
+
+                entity.Property(e => e.InvoiceId).HasColumnName("InvoiceID");
+
+                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+
+                entity.Property(e => e.DueDate).HasColumnType("date");
+
+                entity.Property(e => e.Paid).HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.RentalId).HasColumnName("RentalID");
+            });
+
+            modelBuilder.Entity<Message>(entity =>
+            {
+                entity.ToTable("Message");
+
+                entity.Property(e => e.MessageId).HasColumnName("MessageID");
+
+                entity.Property(e => e.Done).HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.Message1)
+                    .HasMaxLength(500)
+                    .HasColumnName("Message");
+
+                entity.Property(e => e.Title).HasMaxLength(255);
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.Messages)
+                    .HasForeignKey(d => d.CustomerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Message__Custome__6D0D32F4");
             });
 
             modelBuilder.Entity<Product>(entity =>
@@ -132,8 +171,7 @@ namespace Vuokraamo.Models
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.Rentals)
                     .HasForeignKey(d => d.ProductId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("Fk_Productid");
+                    .HasConstraintName("FK_Productid");
             });
 
             OnModelCreatingPartial(modelBuilder);

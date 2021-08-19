@@ -10,6 +10,7 @@ namespace Vuokraamo.Models
         public Customer()
         {
             Carts = new HashSet<Cart>();
+            Messages = new HashSet<Message>();
             Rentals = new HashSet<Rental>();
         }
 
@@ -24,6 +25,7 @@ namespace Vuokraamo.Models
         public string Password { get; set; }
 
         public virtual ICollection<Cart> Carts { get; set; }
+        public virtual ICollection<Message> Messages { get; set; }
         public virtual ICollection<Rental> Rentals { get; set; }
     }
 }
