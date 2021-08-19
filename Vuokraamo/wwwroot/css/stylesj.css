@@ -1,0 +1,11 @@
+﻿.productListDiv {
+    border: solid black 1px;
+    border-radius: 7px;
+}
+.productListDiv:hover{
+    transition-duration: 1.5s;
+    background-color: lightgreen;
+    border: solid green 7px;
+    width: 200%;
+   
+}
