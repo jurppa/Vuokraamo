@@ -25,6 +25,12 @@ namespace Vuokraamo.Controllers
         [HttpGet]
         public IActionResult AdminLogin()
         {
+            string isAdmin =HttpContext.Session.GetString("key");
+            if (isAdmin == "admin")
+            {
+                return RedirectToAction("Index","Admin");
+
+            }
             return View();
         }
     
