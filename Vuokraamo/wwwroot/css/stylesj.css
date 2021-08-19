@@ -15,4 +15,12 @@
     background-color:lightblue;
     text-align:center;
 }
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 50%;
+    padding: 10px;
+}
 
