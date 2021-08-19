@@ -1,0 +1,18 @@
+﻿@model List<Invoice>
+@foreach (var lasku in Model)
+{
+    if ((bool)!lasku.Paid)
+    {
+        <p>Laskun numero:</p>@lasku.InvoiceId
+        <p>Eräpäivä:</p>@lasku.DueDate
+        <p>Maksettava summa:</p>@lasku.TotalDue
+        <button>Maksa lasku</button>
+    }
+    else
+    {
+        <p>Laskun numero:</p>@lasku.InvoiceId
+        <p>Eräpäivä: MAKSETTU</p>
+        <p>Maksettu summa:</p>@lasku.TotalDue
+    }
+
+}

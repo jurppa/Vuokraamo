@@ -44,8 +44,9 @@ namespace Vuokraamo.Controllers
 
         }
         [HttpGet]
-        public IActionResult AsiakasTiedot(int id)
+        public IActionResult AsiakasTiedot()
         {
+
             VarastoDBContext db = _context;
             int cstId = (int)HttpContext.Session.GetInt32("cid");
             return View(db.Customers.Where(a => a.CustomerId == cstId).FirstOrDefault());
@@ -66,6 +67,15 @@ namespace Vuokraamo.Controllers
             db.SaveChanges();
 
             return RedirectToAction("Asiakastiedot", customer.CustomerId);
+        }
+        [HttpGet]
+        public IActionResult Laskut()
+        {
+            int cstId = (int)HttpContext.Session.GetInt32("cid");
+
+            VarastoDBContext db = _context;
+            List<Invoice> asiakkaanLaskut = db.Invoices.Where(a => a.CustomerId == cstId).ToList();
+            return View(asiakkaanLaskut);
         }
 
     }
