@@ -77,6 +77,17 @@ namespace Vuokraamo.Controllers
             List<Invoice> asiakkaanLaskut = db.Invoices.Where(a => a.CustomerId == cstId).ToList();
             return View(asiakkaanLaskut);
         }
+        public IActionResult Maksa(int id)
+        {
+            VarastoDBContext db = _context;
+            Invoice invoice = db.Invoices.Where(a => a.InvoiceId == id).FirstOrDefault();
+            invoice.Paid = true;
+            db.Invoices.Update(invoice);
+            db.SaveChanges();
+
+            return RedirectToAction("Laskut");
+
+        }
 
     }
 }

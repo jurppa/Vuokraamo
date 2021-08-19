@@ -6,7 +6,7 @@
         <p>Laskun numero:</p>@lasku.InvoiceId
         <p>Eräpäivä:</p>@lasku.DueDate
         <p>Maksettava summa:</p>@lasku.TotalDue
-        <button>Maksa lasku</button>
+        @Html.ActionLink("Maksa:", "Maksa", new {Id = lasku.InvoiceId })
     }
     else
     {
