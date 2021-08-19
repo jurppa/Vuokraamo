@@ -54,7 +54,7 @@ namespace Vuokraamo.Controllers
                 db.Carts.Remove(a);
                 db.SaveChanges();
             }
-
+            // Tässä kutsutaan apumetodia joka generoi laskun
 
 
             return RedirectToAction("Vuokraustiedot");
