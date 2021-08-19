@@ -53,11 +53,26 @@ namespace Vuokraamo.Controllers
                 db.Rentals.Add(rental);
                 db.Carts.Remove(a);
                 db.SaveChanges();
+                GeneroiLasku(rental);
             }
             // Tässä kutsutaan apumetodia joka generoi laskun
 
 
             return RedirectToAction("Vuokraustiedot");
+        }
+        public void GeneroiLasku(Rental rental)
+        {
+            DateTime dt = DateTime.Now;
+            VarastoDBContext db = _context;
+            Invoice invoice = new Invoice();
+            invoice.CustomerId = (int)rental.CustomerId;
+            invoice.Paid = false;
+            invoice.RentalId = db.Rentals.OrderBy(a=> a.RentalId).Last().RentalId;
+            invoice.TotalDue = rental.Price;
+            invoice.DueDate = dt.AddDays(7);
+            db.Invoices.Add(invoice);
+            db.SaveChanges();
+
         }
     }
 }
