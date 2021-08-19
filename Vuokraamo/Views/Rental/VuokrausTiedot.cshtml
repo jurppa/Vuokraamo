@@ -21,6 +21,7 @@
                 <td>@i.Price</td>
                 <td>@i.Rentaldate.ToShortDateString()</td>
                 <td>@i.Returndate.ToShortDateString()</td>
+                <td>@Html.ActionLink("Palauta", "PalautaTuote", new {Id = i.RentalId})</td>
             </tr>
         }
         else

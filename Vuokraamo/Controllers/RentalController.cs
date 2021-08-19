@@ -74,6 +74,20 @@ namespace Vuokraamo.Controllers
             db.SaveChanges();
 
         }
+        public IActionResult PalautaTuote(int Id)
+        {
+            VarastoDBContext db = _context;
+            Rental rental = db.Rentals.Where(a => a.RentalId == Id).FirstOrDefault();
+            rental.Returndate = DateTime.Now;
+            Product product = db.Products.Where(a => a.Id == rental.ProductId).FirstOrDefault();
+            product.Amount++;
+            db.Rentals.Update(rental);
+            db.Products.Update(product);
+            db.SaveChanges();
+
+            return RedirectToAction("Vuokraustiedot");
+            
+        }
         
         
     }
