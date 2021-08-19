@@ -6,7 +6,7 @@
     @foreach (var product in Model)
     {
     <div class="col-3 productListDiv">
-        <h3 style="text-align: center">@Html.ActionLink(@product.Name, "Details", new { id = product.Id })</h3> Hinta: @product.Price €
+        <h3 style="text-align: center">@Html.ActionLink(@product.Name, "Details", new { id = product.Id })</h3> <span class="hinta">Hinta: @product.Price € / viikko</span>
 
       
    
