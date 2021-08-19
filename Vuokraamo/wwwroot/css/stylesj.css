@@ -15,12 +15,8 @@
     background-color:lightblue;
     text-align:center;
 }
-.row {
-    display: flex;
-}
+body {
+    background-image: url(../images/69635702-white-wooden-plank-texture-light-rustic-background.jpg);
+    opacity: 1;
 
-.column {
-    flex: 50%;
-    padding: 10px;
 }
-

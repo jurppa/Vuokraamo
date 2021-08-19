@@ -22,8 +22,8 @@
                     <td>@a.ProductPrice</td>
                     <td>@a.ProductId</td>
                     <td>@a.CustomerId</td>
-                    <td>@Html.ActionLink("Poista", "poista", new {Id = a.CartId })</td>
-                </tr>
+                    <td>  <button type="submit">@Html.ActionLink("Poista", "poista", new { Id = a.CartId })</button></td>
+>                </tr>
             }
         </table>
         @Html.ActionLink("Vuokraa", "osta", "rental")

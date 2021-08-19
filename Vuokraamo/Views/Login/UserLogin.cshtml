@@ -1,12 +1,13 @@
 ﻿@using (Html.BeginForm("UserLogin", "Login"))
 {
+
 <div>
 
-    email <input type="text" name="email" />
-    salasana <input type="password" name="password" />
+    Email <input type="text" name="email" />
+    Salasana <input type="password" name="password" />
     @*@Html.ValidationMessage("LogOnError")*@
     <button type="submit">Kirjaudu</button>
 </div>
 }
 Eikö sinulla ole vielä käyttäjätunnusta? Rekisteröidy tästä
-@Html.ActionLink("Rekisteröidy", "Rekisteröidy", "User");
+<button type="submit">@Html.ActionLink("Rekisteröidy", "Rekisteröidy", "User")</button>
