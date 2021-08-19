@@ -14,12 +14,8 @@
     <br />
     <p><em>Tuotetta on tällä hetkellä @Model.Amount kpl saatavilla</em></p>
     <button type="submit"> @Html.ActionLink("Lisää ostoskoriin", "lisääostoskoriin", "cart", new { productId = Model.Id }) </button>
+    <br />
 }
-<img class="img-fluid" src="~/images/@Model.ImageUrl" />
-<br />
-<h4>Esittely</h4>
-@Model.Info
-<br />
 @if (@Model.Amount <= 0)
 {
     <br />
@@ -28,6 +24,11 @@
     </font>
 
 }
+<img class="img-fluid" src="~/images/@Model.ImageUrl" />
+<br />
+<h4>Esittely</h4>
+@Model.Info
+<br />
 @{string isAdmin = HttpContextAccessor.HttpContext.Session.GetString("key");}
 @{if (isAdmin == "admin")
     {
