@@ -10,10 +10,10 @@ using Vuokraamo.Models;
 
 namespace Vuokraamo.Controllers
 {
-    public class UserController : Controller 
+    public class UserController : Controller
     {
-  
-        private readonly ILogger<UserController> _logger;       
+
+        private readonly ILogger<UserController> _logger;
         private readonly VarastoDBContext _context;
 
         public UserController(ILogger<UserController> logger, VarastoDBContext context)
@@ -41,8 +41,8 @@ namespace Vuokraamo.Controllers
 
 
             return RedirectToAction("UserLogin", "Login");
-      
-       }
+
+        }
         [HttpGet]
         public IActionResult AsiakasTiedot(int id)
         {
@@ -54,6 +54,18 @@ namespace Vuokraamo.Controllers
         public IActionResult Asiakas()
         {
             return View();
+        }
+
+        [HttpPost]
+        
+        public IActionResult AsiakasTiedot(Customer customer)
+        {
+            VarastoDBContext db = _context;
+            int cstId = (int)HttpContext.Session.GetInt32("cid");
+            db.Customers.Update(customer);
+            db.SaveChanges();
+
+            return RedirectToAction("Asiakastiedot", customer.CustomerId);
         }
 
     }
