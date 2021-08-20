@@ -41,7 +41,7 @@
                         <li>
                             @{if (isUser == "customer")
                                 {
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="LogOut">Log out</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="LogOut">Kirjaudu ulos</a>
 
                                     <div style="position:absolute; right:200px; top:20px; ">
                                         <a> @Html.ActionLink(@HttpContextAccessor.HttpContext.Session.GetString("cname"), "asiakas", "user")</a>
