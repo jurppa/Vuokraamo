@@ -8,19 +8,20 @@
     <div class="col-sm-8 col-md-3 productListDiv">
         <h3 style="text-align: center">@Html.ActionLink(@product.Name, "Details", new { id = product.Id })</h3> <span class="hinta">Hinta: @product.Price € / viikko</span>
 
-      
-   
+
+
         @if (product.ImageUrl == null)
         {
             <img class="img-fluid" src="~/images/default-product-image.png" />
         }
         else
         {
-            <img class="img-fluid" src="~/images/@product.ImageUrl" />
-
+    <a href="@Url.Action("Details", "Home", new { id = product.Id })">
+        <img class="img-fluid" src="~/images/@product.ImageUrl" />
+    </a>
         }
 
-   </div>
+    </div>
 
     }
 </div>
